@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 
 from llama_index import (
     GPTVectorStoreIndex,
@@ -14,8 +14,9 @@ from llama_index.llms.base import ChatMessage, MessageRole
 from llama_index.llms import OpenAI
 
 
-os.environ["OPENAI_API_KEY"] = "sk-<your-api-key>"
-openai.api_key = os.environ["OPENAI_API_KEY"]
+os.environ["OPENAI_API_KEY"] = 'sk-...'
+
+OpenAI.api_key = os.environ["OPENAI_API_KEY"]
 
 import nest_asyncio
 
