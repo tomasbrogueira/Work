@@ -9,6 +9,7 @@ export default function Results({ userInput }) {
         return;
     }
     
+    
     const initialInvestment = 
         results[0].valueEndOfYear -
         results[0].interest -
