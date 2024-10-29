@@ -1,14 +1,15 @@
 from numpy import *
 import math
 # covariance matrix
-sigma = matrix([[0.996, -1.076],
-           [-1.076, 1.389]
+sigma = matrix([[0.492, -0.682],
+           [-0.682, 1.107]
           ])
 # mean vector
-mu = array([0.785,0.843])
+mu = array([0.503,1.116])
 
 # input
 x = array([3,-1])
+
 
 def norm_pdf_multivariate(x, mu, sigma):
     size = len(x)
