@@ -1,0 +1,2 @@
+<frase> ::= c <mid>+ r
+<mid> ::= a | d

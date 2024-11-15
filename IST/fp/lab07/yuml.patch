@@ -1,0 +1,30 @@
+*** /home/pi/.local/bin/yuml	2021-11-04 12:03:10.250517808 +0000
+--- /home/pi/bin/yuml	2021-11-04 12:41:17.962734393 +0000
+***************
+*** 38,44 ****
+      # noinspection PyUnresolvedReferences, PyCompatibility
+      from urllib.request import urlopen, Request, HTTPError
+      # noinspection PyUnresolvedReferences, PyCompatibility
+!     from urllib.parse import quote_plus
+  
+      def decode(s):
+          return s
+--- 38,44 ----
+      # noinspection PyUnresolvedReferences, PyCompatibility
+      from urllib.request import urlopen, Request, HTTPError
+      # noinspection PyUnresolvedReferences, PyCompatibility
+!     from urllib.parse import quote as quote_plus
+  
+      def decode(s):
+          return s
+***************
+*** 83,88 ****
+--- 83,90 ----
+              raise IOError("File %s not found" % infile)
+  
+          self.body = [x.strip() for x in source.splitlines() if x.strip()]
++         self.body = [s[:s.find('//')] if s.find('//') >= 0 else s for s in self.body]
++         self.body = [s for s in self.body if len(s)]
+          self.log('Done reading.')
+  
+      def prepout(self):

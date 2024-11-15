@@ -1,0 +1,4 @@
+<codigo> ::= <digit> <corpo> \- <corpo>
+<corpo> ::= <digits> <digits> <digits>
+<digits> ::= <digit> | 0
+<digit> ::= [1-9]

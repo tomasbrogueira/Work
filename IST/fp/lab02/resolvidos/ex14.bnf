@@ -1,0 +1,3 @@
+<frase> ::= \( <big> ( <big> | <small> )* (\, <big> (<big> | <small>)* )* \)
+<small> ::= [a-z]
+<big> ::= [A-Z]

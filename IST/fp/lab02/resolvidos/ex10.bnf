@@ -1,0 +1,5 @@
+<notation> ::= <r>E<exp>
+<exp> ::= <digit>+ | \+ <digit>+ | \- <digit>+
+<r> ::= <digits> <digit>* \. <digit>+
+<digits> ::= [1-9]
+<digit> ::= [0-9]

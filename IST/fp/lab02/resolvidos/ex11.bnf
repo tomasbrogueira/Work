@@ -1,0 +1,7 @@
+<coords> ::= <degrees_up><min><sec><direction>\,<degrees_side><min><sec><direction>
+<degrees_side> ::= [0-180]\º
+<degrees_up> ::= [0-90]\º
+<direction2> ::=  E | W
+<direction1> ::= N | S 
+<min> ::= [0-5] [0-9] \'
+<sec> ::= [0-5] [0-9] \''

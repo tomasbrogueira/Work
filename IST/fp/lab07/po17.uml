@@ -1,0 +1,127 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class Paragem {
+- partida: datetime
+~ Paragem(partifa: datetime, estacao: Estacao)
+~ get_partida(): datetime
++ __str__(): str 
+}
+
+class Estacao {
+- nome: str
+~ Estacao(nome: str)
+~ get_name(): str
+~ find_proxima_estacao(): Estacao
+}
+
+class ParteServico {
+~ ParteServico(partida: Estacao, chegada: Estacao, servico: Servico)
+~ get_custo(): float
++ __str__(): str
+}
+
+class Itinerario {
+- numero: int
+- data: datetime
+- custo_total: float
+~ Itinerario(viagens: ParteServico[], passagueiro)
+~ get_custo_total(): float
+~ get_numero(): int
+~ get_date(): datetime
++ __str__(): str
+}
+
+class Servico {
+- custo_total: float
+- id: float
+~ Servico(custo: float, paragens: Paragem[])
+~ set_custo_total(custo: float): void
+~ get_custo_total(): float
+~ get_id(): float
+~ get_partida(estacao: Estacao): str
+~ set_partida(estacao: Estacao): void
+~ get_custo_segmento(partida: Estacao, chegada: Estacao): float
++ __str__(): str
+}
+
+class Passagueiro {
+- id: int
+- nome: str
+~ Passagueiro(nome: str)
+~ get_id(): int
+~ get_nome(): str
+~ get_numero_passagueiros(): int
+~ get_categoria(): str
+~ set_nome(nome: str): void
+~ set_categoria(viagens: Itinerario[]): void
+~ get_itinerarios(): Itinerario[]
+~ get_ultimas_viagens(viagens: Itinerario[]) float
+~ add_itinerario(viagens: ParteServico[]): void
++ __str__(): str
+}
+
+interface Categoria {
+~ Categoria()
+~ get_categoria(): str
+~ get_custo(): float
+}
+
+class Normal {
+~ Normal()
+~ get_categoria(): str
+~ get_custo(): float
+}
+
+class Frequente {
+~ Frequente()
+~ get_categoria(): str
+~ get_custo(): float
+}
+
+class Especial {
+~ Especial()
+~ get_categoria(): str
+~ get_custo(): float
+}
+
+class TrainCompany {
+- max_passagueiros: int
+~ add_pasaagueiro(nome: str): void
+~ remove_passagueiro(passagueiro: Passagueiro): void
+~ add_servico(custo_total: float, paragens: Paragem[]): void
+~ remove_servico(servico: Servico): void
+~ reset_servico(): void
+}
+
+class TicketOffice {
++ get_servico_origem(estacao: Estacao): Servico[]
++ get_servico_termino(estacao: Estacao): Servico[]
++ get_servico(id: int): Servico[]
++ get_servicos(): Servico[]
++ get_passagueiros(): Passagueiro[]
++ get_passagueiro(id: int): Passagueiro[]
++ set_name(id: int, nome: str): void
++ get_itinerarios(): Itinerario[]
++ get_itinerario(passagueiro: Passagueiro): Itinerario[]
++ get_itinerarios_entre(partida: Estacao, chegada: Estacao): Itinerario[]
+}
+
+Paragem "1" --> "1" Estacao : estacao
+ParteServico "1" --> "1" Estacao : partida
+ParteServico "1" --> "1" Estacao : chegada
+Estacao "1" --> "*" Servico : servicos
+Servico "1" --> "1" Paragem : paragens
+ParteServico "1" --> "1" Servico : servico
+Itinerario "1" --> "*" ParteServico : viagens
+Passagueiro "1" --> "*" Itinerario : itinerario
+Passagueiro "1" *-- "1" Categoria : categoria
+TrainCompany "1" --> "*" Servico : servicos
+TrainCompany "1" --> "*" Passagueiro : passagueiros
+TicketOffice "1" --> "*" TrainCompany : companhias
+Categoria <|-- Normal
+Categoria <|-- Frequente
+Categoria <|-- Especial
+
+@enduml

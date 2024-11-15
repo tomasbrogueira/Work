@@ -1,0 +1,5 @@
+<frase>::= <init> <numeros> | <num>
+
+<numeros> ::= <num><numeros> |
+<num>::= 0 | <init>
+<init>::= [1-9]

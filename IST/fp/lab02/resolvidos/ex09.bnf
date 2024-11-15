@@ -1,0 +1,3 @@
+<frase>::= \(<impar> <par>*\)
+<impar>::= xyz
+<par>::= xyzxyz

@@ -1,0 +1,7 @@
+<matricula> ::= <dletra> | <dnum>
+<dnum> ::= <lcomb> \- <ncomb> \- <lcomb>
+<dletra> ::= (<lcomb> \- <ncomb> \- <ncomb>) | (<ncomb> \- <lcomb> \- <ncomb>) | (<ncomb> \- <ncomb> \- <lcomb>)
+<ncomb> ::= <num> <num>
+<num> ::= [0-9]
+<lcomb> ::= <letras> <letras>
+<letras> ::= [A-Z]

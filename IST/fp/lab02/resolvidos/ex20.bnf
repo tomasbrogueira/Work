@@ -1,0 +1,5 @@
+<date> ::= <ano>\/<mes>\/<dia>\ <week>
+<week> ::= Mon | Tue | Wen |  Thu | Fri | Sat | Sun
+<ano> ::= [0-9][0-9][0-9][0-9]
+<mes> ::= ( 0 [1-9] ) | 10 | 11 | 12
+<dia> ::= [0-2][0-9] | 30 | 31

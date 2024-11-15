@@ -1,0 +1,3 @@
+<frase> ::= \{(<letras>+ \: <valores>+)+ (\,<letras>+ \: <valores>+)* \}
+<valores> ::= [0-9]
+<letras> ::= [a-z]

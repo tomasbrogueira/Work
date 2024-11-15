@@ -1,0 +1,4 @@
+<represent> ::= \[<hexa> (\: <hexa>)*\]
+<hexa> ::= 0x <num><letras>
+<num> ::= [0-9]*
+<letras> ::= [a-z]* [A-Z]*

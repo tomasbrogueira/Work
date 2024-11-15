@@ -1,0 +1,10 @@
+public:
+    stage: test
+    script:
+        - python test_public.py
+private:
+    stage: test
+    variables:
+        PRJ: $CI_PROJECT_NAME
+    script:
+        - python $UPLOAD

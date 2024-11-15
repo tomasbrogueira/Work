@@ -1,0 +1,3 @@
+<frase> ::= <letras>+ <num>+
+<num> ::= 1 | 2 | 3
+<letras> ::= A | B | C

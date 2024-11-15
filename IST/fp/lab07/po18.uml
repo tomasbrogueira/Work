@@ -1,0 +1,126 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class SchoolManager {
++ submit_project(discipline: str, project: str, message: str)
++ get_logged_user(): Person
++ get_all_users(): Person[]
+}
+
+class School {
+- name: str
+- next_person_id: str
+~ get_person(id: int): Person
+~ add_person(Person)
+~ add_course(Course)
+~ get_all_users(): Person[]
+}
+
+class Person {
+- id: int
+- name: str
+- phone_number: int
++ get_name(): str
++ get_id(): int
++ __str__(): str
+}
+
+class Teacher {
+~ create_project()
+~ add_discipline(Discipline)
+~ get_students(Discipline): Student[]
+~ get_project_submissions(Discipline, Project): Submission[]
++ __str__(): str
+}
+
+class Student {
+- representative: bool
++ get_course(): Course
+~ add_discipline(Discipline)
+~ set_representative(bool)
+~ is_representative(): bool
+~ submit_project(Project)
+~ submit_answer_to_survey(Answer)
++ __str__(): str
+}
+
+class Course {
+- name: str
+~ add_discipline(Discipline)
+~ add_student(Student)
+~ add_representative(Student)
+~ remove_representative(Student)
+}
+
+class Discipline {
+- name: str
+~ get_name(): str
+~ get_course(): Course
+~ add_teacher(Teacher)
+~ enroll_student(Student)
+~ create_project(name: str)
+~ get_project(name: str)
+}
+
+class Project {
+- name: str
+- description: str
+- closed: boolean
+~ get_name(): str
+~ close()
+~ add_submissions(Student, message: str)
+~ get_submissions(): Submission[]
+~ get_survey(): Survey
+}
+
+class Submission {
+- message: str
+- when: datetime
+~ get_student(): Student
+~ get_answers(): Answer[]
+}
+
+class Survey {
+- condition: enum
+~ open()
+~ close()
+~ finialize()
+~ add_answer(Student, int, str)
+~ get_results_for(Person): str
+}
+
+class Answer {
+- message: str
+- hours: int
++ get_message(): str
++ get_hours(): int
+}
+
+class Notification {
+- message: str
++ get_message(): str
++ get_person(): Person
+}
+
+SchoolManager "1" --> "*" Person : logged_user
+SchoolManager "1" --> "1" School
+School "1" --> "*" Person: users
+School "1" --> "*" Course
+Course "1" --> "*" Discipline
+Course "1" --> "1..7" Student: representative
+Course "1" --> "*" Student: enrolled
+Discipline "1..6" --> "*" Student: enrolled
+Discipline "*" --> "*" Teacher: teaching
+Person "*" -- "*" Notification
+Discipline "1" --> "*" Project
+Project "1" --> "*0..1" Survey
+Project "1" --> "*" Submission
+Submission "*" -- "1" Student
+Project "1" --> "*" Submission
+Survey "1" --> "*" Answer
+Person <|-- Student
+Person <|-- Teacher
+Person <|-- Employee
+
+@enduml
